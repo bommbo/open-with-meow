@@ -1,25 +1,23 @@
 local function launch()
 	local buffers = vim.api.nvim_list_bufs()
-	local fileNames = {}
 
+	local cursor_args = {}
 	for _, buffer in ipairs(buffers) do
-		if vim.api.nvim_buf_is_valid(buffer) and vim.bo[buffer].buflisted then
-			local fileName = vim.api.nvim_buf_get_name(buffer)
-
-			if vim.api.nvim_get_current_buf() == buffer then
-				local location = vim.api.nvim_win_get_cursor(0)
-				fileName = fileName .. ":" .. location[1] .. ":" .. location[2] + 1
-			end
-
-			table.insert(fileNames, fileName)
+		if vim.api.nvim_buf_is_valid(buffer) then
+			local cursor = vim.api.nvim_win_get_cursor(0)
+			table.insert(cursor_args, "+" .. cursor[1] .. ":" .. cursor[2] + 1)
 		end
 	end
 
-	local command = string.format("emacs +%s", table.concat(fileNames, " +"))
+	local file_names = {}
+	for _, buffer in ipairs(buffers) do
+		if vim.api.nvim_buf_is_valid(buffer) then
+			table.insert(file_names, vim.api.nvim_buf_get_name(buffer))
+		end
+	end
 
-	vim.fn.system(command)
+	vim.cmd(string.format("silent !emacs %s %s &", table.concat(cursor_args, " "), table.concat(file_names, " ")))
 end
-
 return {
 	launch = launch,
 }
