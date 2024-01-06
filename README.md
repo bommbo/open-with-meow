@@ -5,7 +5,7 @@ It's a plugin for open file with emacs.
  Neovim cannot open files that have been opened before.If you do, please kill kill other buffer.
  
 ## emacs config
-
+need: kitty
 ```
 (defun my/open-current-file-in-nvim ()
   "open current file with neovim."
