@@ -2,7 +2,7 @@
 It's a plugin for open file with emacs.
 
 ## issue
- Neovim cannot open files that have been opened before.If you do, please kill kill other buffer.
+ Neovim cannot open files that have been opened before.If you do, please kill other buffer.
  
 ## emacs config
 need: kitty
