@@ -18,7 +18,7 @@ local function launch()
 	-- commandline: emacs +line numbers:column numbers file_name
 	-- eg: file: a.txt / line number -> 1 / column number -> 2
 	-- emacs +1:2 a.txt
-	vim.cmd(string.format("silent !emacsclient %s %s &", table.concat(cursor_args, " "), table.concat(file_names, " ")))
+	vim.cmd(string.format("silent !emacs %s %s &", table.concat(cursor_args, " "), table.concat(file_names, " ")))
 end
 return {
 	launch = launch,
