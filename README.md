@@ -5,7 +5,7 @@ It's a plugin for open file with emacs.
  Neovim cannot open files that have been opened before.If you do, please kill other buffer.
  
 ## emacs config
-need: kitty
+need: wezterm
 ```
 (defun my/open-current-file-in-nvim ()
   "open current file with neovim."
@@ -14,6 +14,6 @@ need: kitty
 (column-number (+ (or (current-column) 0) 1)))
     (start-process-shell-command
      "open-in-nvim" nil
-      (format "kitty -e nvim -c \"call cursor(%d, %d)\" %s"
+      (format "wezterm -e nvim -c \"call cursor(%d, %d)\" %s"
 line-number column-number (shell-quote-argument buffer-file-name)))))
 ```
